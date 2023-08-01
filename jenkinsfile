@@ -18,7 +18,7 @@ pipeline {
         stage ('Build the image') {
             steps {
                 sh '''
-                    cd p_codebase
+                    cd Firstproject
                     docker build -t 02271589/pythonapp1:$version .
                 '''
             }
