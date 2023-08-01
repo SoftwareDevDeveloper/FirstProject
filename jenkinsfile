@@ -11,7 +11,7 @@ pipeline {
         stage ('download the codebase') {
             steps {
                 echo "download terraform config file"
-                sh 'git clone https://github.com/SoftwareDevDeveloper/p_codebase.git'
+                sh 'git clone https://github.com/SoftwareDevDeveloper/FirstProject.git'
             }
         }
 
