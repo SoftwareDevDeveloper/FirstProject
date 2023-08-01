@@ -1,0 +1,55 @@
+pipeline {
+    agent any 
+    
+    environment {
+        myuser = credentials ('dockerhub-user1')
+        mypassword = credentials ('dockerhub-password1')
+        version = "v1"
+    }
+
+    stages {
+        stage ('download the codebase') {
+            steps {
+                echo "download terraform config file"
+                sh 'git clone https://github.com/SoftwareDevDeveloper/p_codebase.git'
+            }
+        }
+
+        stage ('Build the image') {
+            steps {
+                sh '''
+                    cd p_codebase
+                    docker build -t 02271589/pythonapp1:$version .
+                '''
+            }
+        }
+
+        stage ('publish image') {
+            steps {
+               sh '''
+                docker login -u $myuser -p $mypassword
+                docker push 02271589/pythonapp1:$version
+              '''
+           }
+        }
+
+        stage('Pushing to ECR') {
+            steps{
+                script {
+                    sh '''
+                        aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 622658514249.dkr.ecr.eu-west-1.amazonaws.com
+                        docker tag pythonapp1:latest 622658514249.dkr.ecr.eu-west-1.amazonaws.com/pythonapp1:latest
+                        docker push 622658514249.dkr.ecr.eu-west-1.amazonaws.com/pythonapp1:latest
+                    '''
+                }
+            }
+        }
+    }
+
+
+    post {
+        always {
+            deleteDir()
+        }
+    }
+}
