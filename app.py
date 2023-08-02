@@ -18,11 +18,11 @@ def hello():
 
 @app.route('/getresponse', methods=['GET'])
 def greeting():
-    value = "pass"
+    value = "Error! Not applicable"
     try:
         return Response("{This is a response from the server}", mimetype='application/json')
     except:
-        value = "Error! Not applicable"
+        value = 'pass'
     return value
     
     

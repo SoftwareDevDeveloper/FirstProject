@@ -1,12 +1,10 @@
 pipeline {
     agent any 
-    
     environment {
         myuser = credentials ('dockerhub-user1')
         mypassword = credentials ('dockerhub-password1')
         version = "v10"
     }
-
     stages {
         stage ('download the codebase') {
             steps {
@@ -19,12 +17,19 @@ pipeline {
             steps {
                 sh '''
                     cd FirstProject
-                    docker build -t 02271589/project:$version .
+                    docker build -t 02271589/projects:$version .
                 '''
             }
         }
+        stage('Run Docker engine') {
+            steps{
+                sh '''  
+                   docker run --name NationalProject -d -p 5000:5000 02271589/projects:$version
+                   '''
+            }
+        }
 
-        stage ('publish image') {
+        stage ('Docker hub login') {
             steps {
                sh '''
                 docker login -u $myuser -p $mypassword
@@ -33,14 +38,6 @@ pipeline {
            }
         }
 
-
-    stage('Push to docker hub') {
-            steps{
-                sh '''  
-                   docker run --name ProjectApp -d -p 5007:5000 02271589/project:$version
-                   '''
-            }
-        }
     }
 
     post {
