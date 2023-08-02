@@ -4,24 +4,25 @@ from flask import Flask, Response
 
 app = Flask(__name__)
 
+
 @app.route('/hello', methods=['GET'])
 def hello():
-    var = "N/A"
+    result = "pass"
     try:
         return Response("{hello world}", mimetype='application/json')
     except:
-        pass
-    return var
+        result = "N/A"
 
+    return result
 
 
 @app.route('/getresponse', methods=['GET'])
 def greeting():
-    value = "Error! Not applicable"
+    value = "pass"
     try:
         return Response("{This is a response from the server}", mimetype='application/json')
     except:
-        pass
+        value = "Error! Not applicable"
     return value
     
     
