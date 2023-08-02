@@ -7,3 +7,8 @@ app = Flask(__name__)
 @app.route('/hello', methods=['GET'])
 def hello():
     return Response("{hello world}", mimetype='application/json')
+
+
+@app.route('/getresponse', methods=['GET'])
+def greeting():
+    return Response("{This is a response from the server}", mimetype='application/json')
