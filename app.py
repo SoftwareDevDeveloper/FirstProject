@@ -6,21 +6,22 @@ app = Flask(__name__)
 
 @app.route('/hello', methods=['GET'])
 def hello():
-    return Response("{hello world}", mimetype='application/json')
+    var = "N/A"
+    try:
+        return Response("{hello world}", mimetype='application/json')
+    except:
+        pass
+    return var
 
-
-# @app.route('/getresponse', methods=['GET'])
-# def greeting():
-#     return Response("{This is a response from the server}", mimetype='application/json')
 
 
 @app.route('/getresponse', methods=['GET'])
 def greeting():
-    value = "Error! This is Not applicable"
+    value = "Error! Not applicable"
     try:
         return Response("{This is a response from the server}", mimetype='application/json')
     except:
-        "PASS"
+        pass
     return value
     
     
