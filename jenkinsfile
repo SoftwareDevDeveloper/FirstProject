@@ -4,7 +4,7 @@ pipeline {
     environment {
         myuser = credentials ('dockerhub-user1')
         mypassword = credentials ('dockerhub-password1')
-        version = "v2"
+        version = "v10"
     }
 
     stages {
@@ -19,7 +19,7 @@ pipeline {
             steps {
                 sh '''
                     cd FirstProject
-                    docker build -t 02271589/ruufbaba:$version .
+                    docker build -t 02271589/project:$version .
                 '''
             }
         }
@@ -28,7 +28,7 @@ pipeline {
             steps {
                sh '''
                 docker login -u $myuser -p $mypassword
-                docker push 02271589/ruufbaba:$version
+                docker push 02271589/project:$version
               '''
            }
         }
@@ -37,14 +37,30 @@ pipeline {
     stage('Push to docker hub') {
             steps{
                 sh '''  
-                   docker run --name ProjectApp -d -p 5007:5000 02271589/ruufbaba:$version
+                   docker run --name ProjectApp -d -p 5007:5000 02271589/project:$version
                    '''
             }
         }
     }
 
+    post {
+        always {
+            deleteDir()
+        }
+    }
+}
 
-    //     stage('Pushing to ECR') {
+
+
+
+
+
+
+
+
+
+
+//     stage('Pushing to ECR') {
     //         steps{
     //             script {
     //                 sh '''
@@ -56,11 +72,3 @@ pipeline {
     //         }
     //     }
     // }
-
-
-    post {
-        always {
-            deleteDir()
-        }
-    }
-}
