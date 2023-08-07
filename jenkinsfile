@@ -29,11 +29,11 @@ pipeline {
             }
         }
 
-        stage ('Docker hub login') {
+        stage ('Publish Image') {
             steps {
                sh '''
                 docker login -u $myuser -p $mypassword
-                docker push 02271589/project:$version
+                docker push 02271589/projects:$version
               '''
            }
         }
@@ -46,6 +46,17 @@ pipeline {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
