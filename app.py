@@ -3,6 +3,7 @@ import requests
 from flask import Flask, Response
 
 app = Flask(__name__)
+version = "1.9.10"
 
 
 @app.route('/hello', methods=['GET'])
@@ -22,7 +23,7 @@ def greeting():
     try:
         return Response("{This is a response from the server}", mimetype='application/json')
     except:
-        value = 'pass'
+        value = 'pass' 
     return value
     
     
