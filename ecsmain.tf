@@ -27,7 +27,7 @@ resource "aws_ecs_task_definition" "python_app" {
   task_role_arn = "arn:aws:iam::622658514249:role/ecsTaskExecutionRole"
 
 }
-# Autoscaling, then attached to the ECS cluster
+
 resource "aws_ecs_service" "flask" {
   name            = "flask"
   cluster         = aws_ecs_cluster.ecs_sg.id
@@ -46,6 +46,16 @@ resource "aws_ecs_service" "flask" {
 }
 
 
+
+
+
+
+
+
+
+
+
+# Autoscaling, then attached to the ECS cluster
 
 # aws_acm_certificate
 

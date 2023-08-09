@@ -3,7 +3,7 @@ pipeline {
     environment {
         myuser = credentials ('dockerhub-user1')
         mypassword = credentials ('dockerhub-password1')
-        version = "v10"
+        version = "v13"
     }
     stages {
         stage ('download the codebase') {

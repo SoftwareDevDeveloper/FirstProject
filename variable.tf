@@ -29,5 +29,10 @@ variable "default_tags" {
   }
 }
 
+
+
+
+
+
 # variable "bucket" {}
 # variable "key" {}

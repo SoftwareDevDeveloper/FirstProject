@@ -3,7 +3,7 @@ import requests
 from flask import Flask, Response
 
 app = Flask(__name__)
-version = "v12"
+version = "v13"
 
 
 @app.route('/hello', methods=['GET'])
