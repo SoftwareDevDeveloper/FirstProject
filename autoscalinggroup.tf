@@ -10,9 +10,9 @@ resource "aws_launch_configuration" "ag_node" {
 }
 
 resource "aws_autoscaling_group" "node_poll" {
-  desired_capacity          = 1
-  max_size                  = 3
-  min_size                  = 1
+  desired_capacity          = 2
+  max_size                  = 5
+  min_size                  = 2
   name                      = "new_poll"
   health_check_grace_period = 300
   health_check_type         = "EC2"

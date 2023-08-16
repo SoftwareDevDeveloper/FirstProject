@@ -114,19 +114,18 @@ resource "aws_route_table_association" "negative_rta4" {
   route_table_id = aws_route_table.negative_awsrt.id
 }
 
+# resource "aws_nat_gateway" "negative_awsnatgw" {
+#   allocation_id = aws_eip.elastic_ip_nat_gateway.id
+#   subnet_id     = aws_subnet.subnet_public1.id
+# }
 
-resource "aws_route" "negative_awsroute" {
-  route_table_id         = aws_route_table.negative_awsrt.id
-  nat_gateway_id         = aws_nat_gateway.negative_awsnatgw.id
-  destination_cidr_block = "0.0.0.0/0"
-}
+# resource "aws_route" "negative_awsroute" {
+#   route_table_id         = aws_route_table.negative_awsrt.id
+#   nat_gateway_id         = aws_nat_gateway.negative_awsnatgw.id
+#   destination_cidr_block = "0.0.0.0/0"
 
 
-resource "aws_nat_gateway" "negative_awsnatgw" {
-  allocation_id = aws_eip.elastic_ip_nat_gateway.id
-  subnet_id     = aws_subnet.subnet_public1.id
-
-  tags = {
-    Name = "gw NAT"
-  }
-}
+  # tags = {
+  #   Name = "gw NAT"
+  # }
+  
