@@ -8,7 +8,7 @@ pipeline {
         password = credentials ('password_dockerhub')
 
         
-        version = "v15"
+        version = "v16"
     }
     stages {
         stage ('download the codebase') {
@@ -29,7 +29,7 @@ pipeline {
         stage('Run Docker engine') {
             steps{
                 sh '''  
-                   docker run --name nations -d -p 5005:5000 02271589/projects:$version
+                   docker run --name national -d -p 5006:5000 02271589/projects:$version
                    '''
             }
         }
@@ -37,7 +37,7 @@ pipeline {
         stage ('Publish Image') {
             steps {
                sh '''
-                docker login -u $username_dockerhub -p $password_dockerhub
+                docker login -u $username -p $password
                 docker push 02271589/projects:$version
               '''
            }
