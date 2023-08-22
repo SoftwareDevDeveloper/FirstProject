@@ -6,13 +6,12 @@ resource "aws_launch_configuration" "ag_node" {
   security_groups             = [aws_security_group.alb.id]
   user_data                   = "#!/bin/bash\necho ECS_CLUSTER=ecs_sg >> /etc/ecs/ecs.config"
   associate_public_ip_address = true
-
 }
 
 resource "aws_autoscaling_group" "node_poll" {
-  desired_capacity          = 2
+  desired_capacity          = 1
   max_size                  = 5
-  min_size                  = 2
+  min_size                  = 1
   name                      = "new_poll"
   health_check_grace_period = 300
   health_check_type         = "EC2"

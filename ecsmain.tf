@@ -12,7 +12,8 @@ resource "aws_ecs_task_definition" "python_app" {
   container_definitions = jsonencode([
     {
       name      = "first"
-      image     = "public.ecr.aws/s3i9z8k1/python-flask-repo:latest"
+      # image     = "public.ecr.aws/s3i9z8k1/python-flask-repo:latest"
+      image     =  "02271589/projects"
       memory    = 512
       essential = true
       portMappings = [
@@ -44,31 +45,3 @@ resource "aws_ecs_service" "flask" {
     type = "ECS"
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-# Autoscaling, then attached to the ECS cluster
-
-# aws_acm_certificate
-
-# data " aws_route53_zone" "name" {
-
-# resource aws_route53_zone" 
-
-# resource aws_acm_certificate_validation
-
-# resource aws_route53_record
-
-
-
-
-
-# }

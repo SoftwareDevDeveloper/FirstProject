@@ -1,8 +1,13 @@
 pipeline {
     agent any 
     environment {
-        myuser = credentials ('dockerhub-user1')
-        mypassword = credentials ('dockerhub-password1')
+        access_key = credentials ('AWS_ACCESS_KEY_ID')
+        secret_keys = credentials ('AWS_SECRET_ACCESS_KEY')
+
+        username = credentials ('username_dockerhub')
+        password = credentials ('password_dockerhub')
+
+        
         version = "v13"
     }
     stages {
@@ -12,7 +17,7 @@ pipeline {
                 sh 'git clone https://github.com/SoftwareDevDeveloper/FirstProject.git'
             }
         }
-
+        
         stage ('Build the image') {
             steps {
                 sh '''
@@ -32,7 +37,7 @@ pipeline {
         stage ('Publish Image') {
             steps {
                sh '''
-                docker login -u $myuser -p $mypassword
+                docker login -u $username_dockerhub -p $password_dockerhub
                 docker push 02271589/projects:$version
               '''
            }

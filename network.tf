@@ -123,7 +123,7 @@ resource "aws_route_table_association" "negative_rta4" {
 #   route_table_id         = aws_route_table.negative_awsrt.id
 #   nat_gateway_id         = aws_nat_gateway.negative_awsnatgw.id
 #   destination_cidr_block = "0.0.0.0/0"
-
+# }
 
   # tags = {
   #   Name = "gw NAT"
