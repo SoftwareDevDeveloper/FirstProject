@@ -29,7 +29,7 @@ pipeline {
         stage('Run Docker engine') {
             steps{
                 sh '''  
-                   docker run --name myapi100 -d -p 5005:5000 02271589/projects:$version
+                   docker run --name theapi -d -p 5003:5000 02271589/projects:$version
                    '''
             }
         }
